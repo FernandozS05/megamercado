@@ -1,0 +1,45 @@
+{
+    "model": "Regresi\u00f3n Lineal",
+    "features": [
+        "precio_unitario",
+        "total",
+        "sucursal_id",
+        "precio_base",
+        "promedio_ventas_producto",
+        "precio_promedio_sucursal",
+        "ventas_estacionales",
+        "interaccion_precio_ventas",
+        "precio_relativo_sucursal",
+        "categoria_Electr\u00f3nica",
+        "categoria_Hogar",
+        "categoria_Ropa",
+        "categoria_Salud",
+        "estacion_Oto\u00f1o",
+        "estacion_Primavera",
+        "estacion_Verano"
+    ],
+    "metrics": {
+        "MAE": 2.7184196949095805,
+        "RMSE": 3.8866620947119017,
+        "R\u00b2": 0.5011527817219208
+    },
+    "coefficients": [
+        -4.845487382062088e-05,
+        0.715548549696267,
+        -3.477786968997883e-06,
+        -0.00010251780772166876,
+        0.027948629391931438,
+        -0.003513459454709063,
+        -0.005701449277082894,
+        2.074502164173264e-05,
+        -0.0034042916841255932,
+        -0.00037106168547827544,
+        0.003933063375722013,
+        0.0036579947389436688,
+        0.0009170269178738725,
+        0.0007086878591355538,
+        0.0026313752808526983,
+        -0.001450682212305318
+    ],
+    "intercept": 2.8323996672452205
+}
