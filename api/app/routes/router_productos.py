@@ -13,6 +13,8 @@ def get_productos(
     categoria: Optional[str] = None,
     precio_min: Optional[float] = None,
     precio_max: Optional[float] = None,
+    limit: int = 1000,
+    offset: int = 0, 
     session: Session = Depends(get_session)
 ):
     query = session.query(Productos)
@@ -32,4 +34,4 @@ def get_productos(
     if precio_max:
         query = query.filter(Productos.precio_base <= precio_max)
     
-    return query.all()
+    return query.offset(offset).limit(limit).all()

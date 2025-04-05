@@ -14,21 +14,25 @@ def get_ventas(
     sucursal_id: Optional[int] = None,   
     producto_id: Optional[str] = None,    
     fecha_inicio: Optional[str] = None,   
-    fecha_fin: Optional[str] = None,       
+    fecha_fin: Optional[str] = None,
+    limit: int = 1000,
+    offset: int = 0,    
     session: Session = Depends(get_session)
 ):
     query = session.query(Ventas)
     
+    query = query.join(Clientes, Clientes.cliente_id == Ventas.cliente_id)
+
     query = query.options(
         joinedload(Ventas.cliente),
-        joinedload(Ventas.producto) 
+        joinedload(Ventas.producto)
     )
     
     if genero_cliente:
         query = query.filter(Clientes.genero == genero_cliente)
     
     if edad_cliente:
-        query = query.filter(Ventas.cliente.edad == edad_cliente)
+        query = query.filter(Clientes.edad == edad_cliente)
     
     if sucursal_id:
         query = query.filter(Ventas.sucursal_id == sucursal_id)
@@ -50,4 +54,4 @@ def get_ventas(
         except ValueError:
             raise ValueError("La fecha de fin debe tener el formato YYYY-MM-DD.")
     
-    return query.all()
+    return query.offset(offset).limit(limit).all()

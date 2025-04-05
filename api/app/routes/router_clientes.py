@@ -13,6 +13,8 @@ def get_clientes(
     genero: Optional[str] = None,
     ubicacion: Optional[str] = None,
     edad: Optional[int] = None,
+    limit: int = 1000,
+    offset: int = 0,
     session: Session = Depends(get_session)
 ):
     query = session.query(Clientes)
@@ -32,4 +34,4 @@ def get_clientes(
     if edad:
         query = query.filter(Clientes.edad == edad)
     
-    return query.all()
+    return query.offset(offset).limit(limit).all()

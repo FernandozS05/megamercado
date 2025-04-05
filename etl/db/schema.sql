@@ -35,7 +35,7 @@ CREATE TABLE ventas (
     cantidad INT,
     precio_unitario DECIMAL(10,2),
     cliente_id VARCHAR(10) REFERENCES clientes (cliente_id),
-    sucursal_id VARCHAR(10),
+    sucursal_id INT,
     total DECIMAL(10,2),
     fecha DATE
 );

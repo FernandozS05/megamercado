@@ -1,5 +1,6 @@
 from sqlmodel import Field, SQLModel, Relationship
 from typing import Optional, List
+from datetime import date
 
 class Productos(SQLModel, table=True):
     producto_id: str = Field(primary_key=True, max_length=10)
@@ -34,7 +35,7 @@ class Ventas(SQLModel, table=True):
     cliente_id: str = Field(foreign_key="clientes.cliente_id")
     sucursal_id: Optional[int] = None
     total: float
-    fecha: Optional[str] = None
+    fecha: Optional[date] = None
 
     producto: Optional[Productos] = Relationship(back_populates="ventas")
     cliente: Optional[Clientes] = Relationship(back_populates="ventas")
@@ -45,7 +46,7 @@ class Logistica(SQLModel, table=True):
     venta_id: str = Field(foreign_key="ventas.venta_id")
     proveedor_id: str = Field(foreign_key="proveedores.proveedor_id")
     estado_envio: str
-    fecha_envio: Optional[str] = None
+    fecha_envio: Optional[date] = None
 
     venta: Optional[Ventas] = Relationship(back_populates="logistica")
     proveedor: Optional[Proveedores] = Relationship(back_populates="logistica")

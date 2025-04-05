@@ -12,6 +12,8 @@ def get_proveedores(
     nombre_proveedor: Optional[str] = None,
     contacto: Optional[str] = None,
     ubicacion: Optional[str] = None,
+    limit: int = 1000,
+    offset: int = 0, 
     session: Session = Depends(get_session)
 ):
     query = session.query(Proveedores)
@@ -28,4 +30,4 @@ def get_proveedores(
     if ubicacion:
         query = query.filter(Proveedores.ubicacion == ubicacion)
     
-    return query.all()
+    return query.offset(offset).limit(limit).all()

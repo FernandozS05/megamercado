@@ -13,6 +13,8 @@ def get_logistica(
     proveedor_id: Optional[str] = None, 
     fecha_inicio: Optional[str] = None, 
     fecha_fin: Optional[str] = None,
+    limit: int = 1000,
+    offset: int = 0,
     session: Session = Depends(get_session)
 ):
     query = session.query(Logistica)
@@ -37,4 +39,4 @@ def get_logistica(
         except ValueError:
             raise ValueError("La fecha de fin debe tener el formato YYYY-MM-DD.")
     
-    return query.all()
+    return query.offset(offset).limit(limit).all()
